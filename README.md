@@ -13,15 +13,16 @@ To install Employee Tracker, follow these steps:
 
 1. **Clone the repository:**
 2. **Navigate to the repository directory:**
-3. **Install necessary dependencies:**
+3. **Install necessary dependencies:  npm install**
 
 ## Usage
 
 To use Employee Tracker, follow these steps:
 
 1. **Start the application: Node Server.js**
-2. **Choose an option from the menu** to view departments, roles, employees, add departments, <br>
-   roles, employees, update employee roles, or quit the application.
+2. **Choose an option from the menu** to view departments, roles, employees, add departments,<br>
+   roles, employees, update employee roles, view employees by department or manager,<br>
+   delete departments, roles, and employees, view department budgets, or quit the application.
 
 ## Features
 
@@ -34,7 +35,6 @@ To use Employee Tracker, follow these steps:
 - **View Department Budgets**: Displays the total utilized budget of a selected department.
 - **Quit**: Safely exits the application.
 
-
 ## Contributing
 
 Contributions to Employee Tracker are welcome. Please ensure to update tests as appropriate.
@@ -44,6 +44,7 @@ Contributions to Employee Tracker are welcome. Please ensure to update tests as 
 Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Repo and Video Walkthru Links
-
+### Github Repo
 https://github.com/S10skeleton/Shanes-Employee-Tracker <br>
-
+### Walkthru Video
+https://drive.google.com/file/d/1HxyVD0qRBEpuWNkUi4fI1UDh_Aeg-_8j/view

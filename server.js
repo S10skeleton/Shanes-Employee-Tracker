@@ -566,36 +566,37 @@ function deleteRole() {
 
 // Function to Delete an Employee
 function deleteEmployee() {
-  connection.query(
-    'SELECT id, CONCAT(first_name, " ", last_name) AS name FROM employee',
-    (err, employees) => {
-      if (err) throw err;
-      const employeeChoices = employees.map(({ id, name }) => ({
-        name,
-        value: id,
-      }));
+  connection.query('SELECT id, CONCAT(first_name, " ", last_name) AS name FROM employee', (err, employees) => {
+    if (err) throw err;
+    const employeeChoices = employees.map(({ id, name }) => ({ name, value: id }));
 
-      inquirer
-        .prompt({
-          type: "list",
-          name: "employeeId",
-          message: "Select an employee to delete:",
-          choices: employeeChoices,
-        })
-        .then((answer) => {
-          connection.query(
-            "DELETE FROM employee WHERE id = ?",
-            answer.employeeId,
-            (err, res) => {
-              if (err) throw err;
-              console.log("Employee deleted successfully.");
-              startApp();
-            }
-          );
+    inquirer.prompt({
+      type: 'list',
+      name: 'employeeId',
+      message: 'Select an employee to delete:',
+      choices: employeeChoices
+    })
+    .then(answer => {
+      // Check if the employee is a manager
+      connection.query('SELECT id FROM employee WHERE manager_id = ?', answer.employeeId, (err, managedEmployees) => {
+        if (err) throw err;
+
+        if (managedEmployees.length > 0) {
+          console.log('This employee is a manager for other employees. Please reassign or remove these employees\' manager before deleting.');
+          return startApp();
+        }
+
+        // Proceed with deletion
+        connection.query('DELETE FROM employee WHERE id = ?', answer.employeeId, (err, res) => {
+          if (err) throw err;
+          console.log('Employee deleted successfully.');
+          startApp();
         });
-    }
-  );
+      });
+    });
+  });
 }
+
 
 // Function to handle Quit action
 function quitApplication() {
