@@ -16,9 +16,12 @@ INSERT INTO role (title, salary, department_id) VALUES
 
 -- Insert data into the 'employee' table
 INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES 
-('John', 'Doe', 1, NULL),
-('Jane', 'Doe', 2, 1),
-('Jim', 'Beam', 3, NULL),
-('Jill', 'Valentine', 4, 3),
-('Jack', 'Daniels', 5, NULL),
-('Josie', 'Wales', 6, 5);
+-- Managers
+('John', 'Doe', 1, NULL),       -- Assuming John Doe is a manager with no manager above him
+('Jim', 'Beam', 3, NULL),       -- Jim Beam as HR Manager
+('Jack', 'Daniels', 5, NULL),   -- Jack Daniels as Marketing Manager
+
+-- Employees with Managers
+('Jane', 'Doe', 2, 1),          -- Managed by John Doe (id: 1)
+('Jill', 'Valentine', 4, 3),    -- Managed by Jim Beam (id: 3)
+('Josie', 'Wales', 6, 5);       -- Managed by Jack Daniels (id: 5)
